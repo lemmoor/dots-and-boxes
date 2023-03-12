@@ -17,7 +17,7 @@ function Multiplayer() {
         setRoomCode(null)
         setSocket(null)
 
-        const s = io(`http://${window.location.hostname}:5000`)
+        const s = io()
         s.on('connect', () => {
             setSocket(s);
         })
