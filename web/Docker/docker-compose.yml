@@ -1,27 +1,12 @@
-version: '3.3'
-
 services:
   dots-game:
-    image: cimlah/dots-game:latest
+    image: dots-and-boxes:local
     restart: unless-stopped
-    hostname: dots-game1
-    container_name: dots-game1
-    command: bash -c 'web/Docker/app-start.sh'
+    container_name: dots-game
+    command: bash -c 'cd /usr/src/app/server && node index.js'
     volumes:
       - ../../.:/usr/src/app
-    
     ports:
       - "5001:5001"
-    tty: true
-    networks:
-      dots-game_network:
-        ipv4_address: 172.21.1.2
-
-
-networks:
-  dots-game_network:
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: "172.21.1.0/24"
+    environment:
+      - PORT=5001

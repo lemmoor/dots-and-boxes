@@ -2,4 +2,5 @@ FROM node:16
 
 WORKDIR /usr/src/app
 COPY . .
-RUN cd web && npm install && cd ../server && npm install
+# installing only server dependencies since client is already built
+RUN cd server && npm install
